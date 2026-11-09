@@ -1,0 +1,163 @@
+:root {
+  --ink: #1d2433;
+  --paper: #e8ebe3;
+  --paper-2: #f5f6f1;
+  --fox: #e36f1e;
+  --fox-dark: #b8520c;
+  --moss: #42553a;
+  --brass: #b5965a;
+  --wood: #5a3b28;
+  --wood-dark: #3e2819;
+  --tag: #f3e6c4;
+  --display: "IM Fell DW Pica", Georgia, serif;
+  --body: "Karla", system-ui, sans-serif;
+  --max: 1160px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--body);
+}
+img { max-width: 100%; display: block; }
+a { color: var(--fox-dark); }
+:focus-visible { outline: 3px solid var(--fox); outline-offset: 3px; }
+
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.1; margin: 0 0 .5em; }
+h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: 1.75rem; }
+p { max-width: 62ch; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--ink); color: var(--paper); padding: .5rem 1rem; z-index: 99; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .75rem max(1rem, calc((100% - var(--max)) / 2));
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); font-family: var(--display); font-size: 1.5rem; }
+.nav { display: flex; gap: 1.5rem; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav a:hover { color: var(--fox-dark); }
+.nav-toggle { display: none; }
+
+@media (max-width: 720px) {
+  .nav-toggle { display: block; background: none; border: 1px solid var(--ink); border-radius: 4px; padding: .35rem .8rem; font: inherit; color: var(--ink); }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
+  .nav.is-open { display: flex; }
+  .nav a { padding: .9rem 1rem; }
+}
+
+/* Buttons */
+.btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid var(--ink); cursor: pointer; font-family: var(--body); font-size: 1rem; }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--fox-dark); border-color: var(--fox-dark); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+main > section { padding: clamp(3rem, 8vw, 6rem) max(1rem, calc((100% - var(--max)) / 2)); }
+
+/* Hero: the cabinet */
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.hero-cabinet {
+  margin: 0;
+  background: var(--wood);
+  border: 14px solid var(--wood-dark);
+  border-radius: 10px 10px 4px 4px;
+  padding: 1rem;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, .45);
+}
+.shelf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem 1rem; }
+.shelf-item {
+  display: flex; align-items: flex-end; justify-content: center;
+  aspect-ratio: 3 / 4;
+  padding-bottom: 10px;
+  border-bottom: 10px solid var(--wood-dark);
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), transparent 40%);
+}
+.shelf-item img { max-height: 92%; width: auto; filter: drop-shadow(0 6px 6px rgba(0,0,0,.45)); }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+
+/* Shop */
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 2rem; }
+.filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 2.5rem; }
+.filter { background: transparent; border: 1px solid var(--ink); border-radius: 999px; padding: .45rem 1rem; font: 500 .95rem var(--body); color: var(--ink); cursor: pointer; }
+.filter.is-active { background: var(--moss); border-color: var(--moss); color: var(--paper-2); }
+
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 3rem 2rem; }
+.item button { all: unset; display: block; width: 100%; cursor: pointer; }
+.item button:focus-visible { outline: 3px solid var(--fox); outline-offset: 6px; }
+.item-frame { background: var(--paper-2); aspect-ratio: 4 / 5; display: grid; place-items: center; padding: 1.25rem; border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+.item-frame img { max-height: 100%; object-fit: contain; }
+.item.is-sold .item-frame img { opacity: .45; }
+
+/* The luggage tag: the one memorable thing */
+.tag {
+  position: relative;
+  width: 82%;
+  margin: -1.5rem 0 0 1rem;
+  padding: .8rem 1rem .8rem 2.4rem;
+  background: var(--tag);
+  color: var(--ink);
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%);
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  transition: transform .25s ease;
+}
+.item:nth-child(even) .tag { transform: rotate(1.5deg); }
+.item button:hover .tag { transform: rotate(0deg); }
+.tag::before { content: ""; position: absolute; left: 18px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 2px var(--brass); }
+.tag-name { font-family: var(--display); font-size: 1.3rem; line-height: 1.15; display: block; }
+.tag-meta { display: flex; justify-content: space-between; gap: 1rem; font-size: .9rem; margin-top: .25rem; }
+.tag-price { font-weight: 700; }
+.tag-sold { color: var(--fox-dark); font-weight: 700; }
+.tag-kind { font-size: .9rem; color: var(--moss); margin: 0 0 .25rem; }
+.empty { font-style: italic; }
+
+/* Commissions */
+.commissions { background: var(--ink); color: var(--paper); display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.commissions a { color: var(--tag); }
+.steps { padding-left: 1.25rem; }
+.steps li { margin-bottom: .6rem; }
+.steps li::marker { font-family: var(--display); color: var(--brass); font-size: 1.2rem; }
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-content: start; }
+.form label { display: flex; flex-direction: column; gap: .35rem; font-weight: 500; font-size: .95rem; }
+.form .full { grid-column: 1 / -1; }
+.form input, .form select, .form textarea { font: inherit; padding: .7rem .8rem; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); background: color-mix(in srgb, var(--paper) 8%, var(--ink)); color: var(--paper); }
+.form .btn-primary { background: var(--fox); border-color: var(--fox); color: var(--ink); }
+.form .btn-primary:hover { background: var(--tag); border-color: var(--tag); }
+.form-status { min-height: 1.5em; margin: 0; }
+@media (max-width: 860px) { .commissions, .form { grid-template-columns: 1fr; } }
+
+.about { max-width: none; }
+.contact { border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
+.socials { display: flex; gap: 1.5rem; }
+
+.site-footer { padding: 2rem max(1rem, calc((100% - var(--max)) / 2)); background: var(--moss); color: var(--paper-2); font-size: .9rem; }
+.site-footer p { margin: 0; }
+
+/* Product modal */
+.modal { border: none; padding: 0; width: min(900px, calc(100% - 2rem)); max-height: calc(100% - 2rem); background: var(--paper-2); color: var(--ink); border-radius: 8px; }
+.modal::backdrop { background: rgba(29, 36, 51, .7); }
+.modal[open] { animation: rise .25s ease-out; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+.modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; }
+.modal-body img { width: 100%; background: var(--paper); padding: 1rem; }
+.modal-close { position: absolute; top: .5rem; right: .75rem; background: none; border: none; font-size: 2rem; line-height: 1; cursor: pointer; color: var(--ink); }
+.modal-price { font-weight: 700; font-size: 1.25rem; }
+.specs { display: grid; grid-template-columns: auto 1fr; gap: .25rem 1rem; margin: 1rem 0 1.5rem; font-size: .95rem; }
+.specs dt { color: var(--moss); }
+.specs dd { margin: 0; }
+@media (max-width: 720px) { .modal-body { grid-template-columns: 1fr; padding: 1.25rem; } }

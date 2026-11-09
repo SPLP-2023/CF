@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curiosity Fox — paintings, dioramas and odd little things</title>
+  <meta name="description" content="Curiosity Fox makes and sells one-of-a-kind paintings, diorama models and curiosities, and takes custom commissions.">
+  <link rel="icon" href="assets/fox.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Curiosity Fox home">
+      <img src="assets/fox.svg" alt="" width="36" height="36">
+      <span>Curiosity Fox</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav">
+      <a href="#shop">Shop</a>
+      <a href="#commissions">Commissions</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <h1>Small worlds, painted and built by hand.</h1>
+        <p>Curiosity Fox makes one-of-a-kind paintings, diorama models and odd little objects. Everything in the cabinet is the only one there is. If you can't find what you're after, we'll make it.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#shop">Browse the cabinet</a>
+          <a class="btn btn-ghost" href="#commissions">Request a commission</a>
+        </div>
+      </div>
+      <figure class="hero-cabinet" aria-label="A cabinet of shelves holding featured pieces">
+        <div class="shelf" id="hero-shelf"></div>
+      </figure>
+    </section>
+
+    <section class="shop" id="shop" aria-labelledby="shop-title">
+      <div class="section-head">
+        <h2 id="shop-title">The cabinet</h2>
+        <p>Each piece is one of one. When it's gone, it's gone.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter by type">
+        <button class="filter is-active" data-filter="all" aria-pressed="true">Everything</button>
+        <button class="filter" data-filter="painting" aria-pressed="false">Paintings</button>
+        <button class="filter" data-filter="diorama" aria-pressed="false">Dioramas</button>
+        <button class="filter" data-filter="curiosity" aria-pressed="false">Curiosities</button>
+      </div>
+      <ul class="grid" id="product-grid"></ul>
+      <p class="empty" id="empty" hidden>Nothing in this drawer right now. Ask about a commission instead.</p>
+    </section>
+
+    <section class="commissions" id="commissions" aria-labelledby="comm-title">
+      <div class="comm-intro">
+        <h2 id="comm-title">Commissions</h2>
+        <p>A painting of your house, your dog, or the view from a place that matters. A diorama of a scene you can only describe. Tell us the idea and we'll come back with a sketch, a price and a timescale.</p>
+        <ol class="steps">
+          <li><strong>Tell us the idea.</strong> Photos and rough sizes help.</li>
+          <li><strong>Get a sketch and quote.</strong> Usually within a week.</li>
+          <li><strong>Pay a deposit.</strong> We start making.</li>
+          <li><strong>Receive your piece.</strong> Packed carefully and posted, or collected.</li>
+        </ol>
+      </div>
+      <form class="form" id="commission-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New commission request — Curiosity Fox">
+        <label>Your name<input name="name" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+        <label>What would you like?
+          <select name="type" required>
+            <option value="">Choose one</option>
+            <option>Painting</option>
+            <option>Diorama model</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label>Rough budget
+          <select name="budget">
+            <option>Not sure yet</option>
+            <option>Under £100</option>
+            <option>£100–£250</option>
+            <option>£250–£500</option>
+            <option>£500+</option>
+          </select>
+        </label>
+        <label class="full">Describe the idea<textarea name="message" rows="5" required></textarea></label>
+        <label class="full">Needed by (optional)<input type="date" name="deadline"></label>
+        <button class="btn btn-primary full" type="submit">Send request</button>
+        <p class="form-status full" id="form-status" role="status"></p>
+      </form>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About Curiosity Fox</h2>
+      <p>Curiosity Fox started with a shelf of things too odd to throw away and too good to keep hidden. Every painting is made by hand, every diorama is built from scratch, and nothing is printed or mass-produced.</p>
+      <p>Replace this with your own story: who makes the work, where the workshop is, and what draws you to small, strange, beautiful things.</p>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Get in touch</h2>
+      <p>Questions about a piece, postage or a commission: <a href="mailto:hello@curiosityfox.co.uk">hello@curiosityfox.co.uk</a></p>
+      <p class="socials"><a href="https://instagram.com/" rel="noopener">Instagram</a> <a href="https://etsy.com/" rel="noopener">Etsy</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Curiosity Fox. All work is original and one of a kind.</p>
+  </footer>
+
+  <dialog class="modal" id="product-modal" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    <div class="modal-body">
+      <img id="modal-img" alt="">
+      <div>
+        <p class="tag-kind" id="modal-kind"></p>
+        <h3 id="modal-title"></h3>
+        <p class="modal-price" id="modal-price"></p>
+        <p id="modal-desc"></p>
+        <dl class="specs" id="modal-specs"></dl>
+        <a class="btn btn-primary" id="modal-buy" href="#" rel="noopener">Buy now</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
